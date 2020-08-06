@@ -5,8 +5,8 @@ import random
 import time
 pygame.init()
 
-size = width, height = 600, 600
-resolution = 20
+size = width, height = 800, 800
+resolution = 10
 
 row, col = width // resolution , height // resolution
 
@@ -21,17 +21,16 @@ def make_grid(row, col):
     return [  [ random.choice( [0,1] )  for _ in range(col)] for _ in range(row)]
 
 
-
-
-
 start_grid = make_grid(row, col)
 count = 0
+
+
 while 1:
-    time.sleep(0.3)
-    count += 1
+
+    # time.sleep(start)
     for x in range(row):
         for y in range(col):
-            rect = pygame.Rect(x*resolution, y*resolution, resolution-1, resolution-1)
+            rect = pygame.Rect(x*resolution + 1, y*resolution + 1, resolution-2, resolution-2)
 
             if start_grid[x][y] == 0 :
                 pygame.draw.rect(screen, black, rect )
@@ -54,6 +53,10 @@ while 1:
                         continue
                     try:
                         sum += start_grid[i + k][j + l]
+                        # temp_x = (i + k + col) % col
+                        # temp_y = (j + l + row) % row
+                        # sum += start_grid[ temp_x ][ temp_y ]
+
                     except Exception as e:
                         pass
             # print( x,y )
